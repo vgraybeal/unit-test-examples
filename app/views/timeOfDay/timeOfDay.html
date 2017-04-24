@@ -1,2 +1,8 @@
-<p>Time of Day {{vm.timeOfDayMessage}}</p>
-<button ng-click="vm.updateTimeOfDayDisplay()">Time of day</button>
+
+<button ng-click="vm.displayTimeOfDay()">Display Time of Day</button>
+<p>Time of Day {{vm.timeOfDay}}</p>
+<button ng-click="vm.actuateLights(true)">Trigger Motion</button>
+<button ng-click="vm.actuateLights()">Actuate Lights</button>
+<p>Lights {{vm.lightsState}}</p>
+
+<i class="fa fa-lightbulb-o" ng-class="{on: vm.lightsState === 'on'}" aria-hidden="true"></i>

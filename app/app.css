@@ -23,3 +23,14 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.fa-lightbulb-o {
+  font-size: 80px;
+  margin: 10px;
+  padding: 10px;
+  background-color: black;
+  color: #848484;
+}
+.fa-lightbulb-o.on {
+  color: #f4dc42;
+}
