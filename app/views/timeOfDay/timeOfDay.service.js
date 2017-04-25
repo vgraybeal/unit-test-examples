@@ -1,27 +1,14 @@
 'use strict';
 
-angular.module('myApp.timeOfDay', ['ngRoute'])
+angular.module('myApp.timeOfDay')
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/timeOfDay', {
-    templateUrl: 'views/timeOfDay/timeOfDay.html',
-    controller: 'TimeOfDayCtrl',
-    controllerAs: 'vm'
-  });
-}])
 
-.controller('TimeOfDayCtrl', [
-  function() {
-    var vm = this;
+.service('TimeOfDayService', ['LightService',
+  function(LightService) {
     var lastMotionTime;
-    vm.lightsState = "off";
-    vm.timeOfDay = "";
 
-    vm.displayTimeOfDay = function () {
-      vm.timeOfDay = vm.getTimeOfDay();
-    }
 
-    vm.getTimeOfDay = function () {
+    this.getTimeOfDay = function () {
       var time = new Date();
       var hour = time.getHours();
 
@@ -39,32 +26,25 @@ angular.module('myApp.timeOfDay', ['ngRoute'])
       }
     }
 
-    vm.actuateLights = function (motionDetected) {
+    this.actuateLights = function (motionDetected) {
       if (motionDetected) {
         lastMotionTime = new Date();
       }
 
       var diffMs = (new Date() - lastMotionTime);
       var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-      var timeOfDay = vm.getTimeOfDay();
+      var timeOfDay = this.getTimeOfDay();
 
       // If motion was detected in the evening or at night, turn the light on.
       if (motionDetected && (timeOfDay === "Night")) {
-        vm.turnLightsOn();
+        LightService.turnLightsOn();
       } 
       // If no motion is detected for one minute, or if it is morning or day, turn the light off.
       else if (diffMins > 1 || (timeOfDay == "Morning" || timeOfDay == "Afternoon"))
       {
-        vm.turnLightsOff();        
+        LightService.turnLightsOff();   
       }
     }
 
-    vm.turnLightsOn = function () {
-      vm.lightsState = "on";
-    }
-
-    vm.turnLightsOff = function () {
-      vm.lightsState = "off";
-    }
   }
 ]);
