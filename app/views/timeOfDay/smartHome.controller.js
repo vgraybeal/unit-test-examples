@@ -3,18 +3,18 @@
 angular.module('myApp.timeOfDay')
 
 
-.controller('SmartHomeCtrl', ['TimeOfDayService', '$rootScope',
-  function(TimeOfDayService, $rootScope) {
+.controller('SmartHomeCtrl', ['SmartHomeService', '$rootScope',
+  function(SmartHomeService, $rootScope) {
     var vm = this;
     vm.lightsState = "on";
     vm.timeOfDay = "";
 
     vm.displayTimeOfDay = function () {
-      vm.timeOfDay = TimeOfDayService.getTimeOfDay();
+      vm.timeOfDay = SmartHomeService.getTimeOfDay();
     }
 
     vm.actuateLights = function () {
-      TimeOfDayService.actuateLights();
+      SmartHomeService.actuateLights();
     }
 
     $rootScope.$on('switchLights', function (event, newLightState) {

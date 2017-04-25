@@ -20,7 +20,7 @@ describe('SmartHomeCtrl', function(){
         });
     });
 
-    // TESTING DEPENDENCY
+    // TESTING DEPENDENCIES
     describe('on switchLights', function() {
 
         var LightService;

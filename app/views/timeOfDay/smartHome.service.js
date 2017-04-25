@@ -3,7 +3,7 @@
 angular.module('myApp.timeOfDay')
 
 
-.service('TimeOfDayService', ['LightService',
+.service('SmartHomeService', ['LightService',
   function(LightService) {
     var lastMotionTime;
 
