@@ -6,7 +6,6 @@ angular.module('myApp.timeOfDay')
 .controller('SmartHomeCtrl', ['TimeOfDayService', '$rootScope',
   function(TimeOfDayService, $rootScope) {
     var vm = this;
-    var lastMotionTime;
     vm.lightsState = "on";
     vm.timeOfDay = "";
 
