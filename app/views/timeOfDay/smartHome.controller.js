@@ -3,7 +3,7 @@
 angular.module('myApp.timeOfDay')
 
 
-.controller('TimeOfDayCtrl', ['TimeOfDayService', '$rootScope',
+.controller('SmartHomeCtrl', ['TimeOfDayService', '$rootScope',
   function(TimeOfDayService, $rootScope) {
     var vm = this;
     var lastMotionTime;
