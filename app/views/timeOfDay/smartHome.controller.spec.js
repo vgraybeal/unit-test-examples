@@ -18,10 +18,24 @@ describe('SmartHomeCtrl', function(){
                 expect(vm.timeOfDay).toBe('Morning');
             })
         });
+        describe('at 1 PM', function() {
+            it('should set timeOfDay to Afternoon', function () {
+                vm.displayTimeOfDay()
+
+                expect(vm.timeOfDay).toBe('Afternoon');
+            })
+        });
+        describe('at 10 PM', function() {
+            it('should set timeOfDay to Night', function () {
+                vm.displayTimeOfDay()
+
+                expect(vm.timeOfDay).toBe('Night');
+            })
+        });
     });
 
     // TESTING DEPENDENCIES
-    describe('on switchLights', function() {
+    describe('when light state changes', function() {
 
         var LightService;
 
@@ -29,7 +43,7 @@ describe('SmartHomeCtrl', function(){
             LightService = _LightService_;
         }));
 
-        describe('when switches on', function() {
+        describe('if switches on', function() {
             it('should set lightsState to "on"', function () {
                 LightService.turnLightsOn();
 
@@ -37,7 +51,7 @@ describe('SmartHomeCtrl', function(){
             })
         });
 
-        describe('when switches off', function() {
+        describe('if switches off', function() {
             it('should set lightsState to "off"', function () {
                 LightService.turnLightsOff();
 

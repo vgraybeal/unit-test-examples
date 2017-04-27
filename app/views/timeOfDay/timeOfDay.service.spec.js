@@ -1,31 +1,33 @@
 'use strict';
 
-describe('TimeOfDayService', function() {
+describe('SmartHomeService', function() {
 
-  var TimeOfDayService;
+  var SmartHomeService;
   beforeEach(module('myApp.timeOfDay'));
 
-  beforeEach(inject(function (_TimeOfDayService_) {
-    TimeOfDayService = _TimeOfDayService_;
+  beforeEach(inject(function (_SmartHomeService_) {
+    SmartHomeService = _SmartHomeService_;
   }));
 
   // NON-DETERMINISTIC TESTS
-  describe('at 6 AM', function() {
-    it('should return Morning', function () {
-      expect(TimeOfDayService.getTimeOfDay()).toBe('Morning');
-    })
-  });
+  describe('getTimeOfDay()', function() {
+    describe('at 6 AM', function() {
+      it('should return Morning', function () {
+        expect(SmartHomeService.getTimeOfDay()).toBe('Morning');
+      })
+    });
 
-  describe('at 12 PM', function() {
-    it('should return Afternoon', function () {
-      expect(TimeOfDayService.getTimeOfDay()).toBe('Afternoon');
-    })
-  });
+    describe('at 12 PM', function() {
+      it('should return Afternoon', function () {
+        expect(SmartHomeService.getTimeOfDay()).toBe('Afternoon');
+      })
+    });
 
-  describe('at 10 PM', function() {
-    it('should return Night', function () {
-      expect(TimeOfDayService.getTimeOfDay()).toBe('Night');
-    })
+    describe('at 10 PM', function() {
+      it('should return Night', function () {
+        expect(SmartHomeService.getTimeOfDay()).toBe('Night');
+      })
+    });
   });
 
 });

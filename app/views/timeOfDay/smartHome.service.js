@@ -21,21 +21,24 @@ angular.module('myApp.timeOfDay')
         }
       }
 
-      this.actuateLights = function (motionDetected) {
-        if (motionDetected) {
-          lastMotionTime = new Date();
-        }
-
-        var diffMs = (new Date() - lastMotionTime);
-        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+      this.actuateLights = function () {
         var timeOfDay = this.getTimeOfDay();
 
         // If motion was detected in the evening or at night, turn the light on.
-        if (motionDetected && (timeOfDay === "Night")) {
+        if (timeOfDay === "Night") {
           LightService.turnLightsOn();
         }
         // If no motion is detected for one minute, or if it is morning or day, turn the light off.
-        else if (diffMins > 1 || (timeOfDay == "Morning" || timeOfDay == "Afternoon")) {
+        else if (timeOfDay == "Morning" || timeOfDay == "Afternoon") {
+          LightService.turnLightsOff();
+        }
+      }
+
+      this.toggleLights = function () {
+        if (LightService.getLightState() === "off") {
+          LightService.turnLightsOn();
+        }
+        else if (LightService.getLightState() === "on") {
           LightService.turnLightsOff();
         }
       }

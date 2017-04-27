@@ -5,13 +5,20 @@ angular.module('myApp.timeOfDay')
 
 .service('LightService', ['$rootScope',
   function($rootScope) {
+    var lightState = "off";
+
+    this.getLightState = function () {
+      return lightState;
+    }
 
     this.turnLightsOn = function () {
-      $rootScope.$broadcast("switchLights", "on");
+      lightState = "on";
+      $rootScope.$broadcast("switchLights", lightState);
     }
 
     this.turnLightsOff = function () {
-      $rootScope.$broadcast("switchLights", "off");
+      lightState = "off";
+      $rootScope.$broadcast("switchLights", lightState);
     }
 
   }
