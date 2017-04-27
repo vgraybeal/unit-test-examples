@@ -8,8 +8,8 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'views/timeOfDay/timeOfDay.module.js',
-      'views/timeOfDay/**/*.js'
+      'views/smartHome/smartHome.module.js',
+      'views/smartHome/**/*.js'
     ],
 
     autoWatch: true,

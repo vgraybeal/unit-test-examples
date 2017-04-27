@@ -3,12 +3,10 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.timeOfDay',
-  'myApp.view2',
-  'myApp.version'
+  'myApp.smartHome'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/timeOfDay'});
+  $routeProvider.otherwise({redirectTo: '/smartHome'});
 }]);

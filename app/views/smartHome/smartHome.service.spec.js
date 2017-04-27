@@ -3,7 +3,7 @@
 describe('SmartHomeService', function() {
 
   var SmartHomeService;
-  beforeEach(module('myApp.timeOfDay'));
+  beforeEach(module('myApp.smartHome'));
 
   beforeEach(inject(function (_SmartHomeService_) {
     SmartHomeService = _SmartHomeService_;

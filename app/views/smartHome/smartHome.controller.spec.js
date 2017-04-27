@@ -3,7 +3,7 @@
 describe('SmartHomeCtrl', function(){
 
     var vm;
-    beforeEach(module('myApp.timeOfDay'));
+    beforeEach(module('myApp.smartHome'));
 
     beforeEach(inject(function ($controller) {
         vm = $controller('SmartHomeCtrl', {});

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.timeOfDay')
+angular.module('myApp.smartHome')
 
 
 .controller('SmartHomeCtrl', ['SmartHomeService', '$rootScope',
