@@ -3,9 +3,11 @@
 describe('SmartHomeService', function() {
 
   var SmartHomeService;
+  var LightService;
   beforeEach(module('myApp.smartHome'));
 
-  beforeEach(inject(function (_SmartHomeService_) {
+  beforeEach(inject(function (_LightService_, _SmartHomeService_) {
+    LightService = _LightService_;
     SmartHomeService = _SmartHomeService_;
   }));
 
@@ -28,6 +30,22 @@ describe('SmartHomeService', function() {
         expect(SmartHomeService.getTimeOfDay()).toBe('Night');
       })
     });
+  });
+
+  // NON-INDEPENDENT TESTS
+  describe('toggleLights()', function() {
+    describe('when toggleLights() is called twice', function() {
+      it('should switch lights on, then switch lights off', function () {
+        spyOn(LightService, 'turnLightsOn').and.callThrough();
+        spyOn(LightService, 'turnLightsOff').and.callThrough();
+        SmartHomeService.toggleLights();
+        expect(LightService.turnLightsOn).toHaveBeenCalled();
+        SmartHomeService.toggleLights();
+        expect(LightService.turnLightsOff).toHaveBeenCalled();
+      })
+    });
+
+
   });
 
 });
