@@ -2,8 +2,8 @@
 
 angular.module('myApp.smartHome')
 
-  .service('SmartHomeService', ['LightService',
-    function (LightService) {
+  .service('SmartHomeService', ['BackyardLightService',
+    function (BackyardLightService) {
       var lastMotionTime;
 
       this.getTimeOfDay = function () {
@@ -26,21 +26,16 @@ angular.module('myApp.smartHome')
 
         // If motion was detected in the evening or at night, turn the light on.
         if (timeOfDay === "Night") {
-          LightService.turnLightsOn();
+          BackyardLightService.turnLightsOn();
         }
         // If no motion is detected for one minute, or if it is morning or day, turn the light off.
         else if (timeOfDay == "Morning" || timeOfDay == "Afternoon") {
-          LightService.turnLightsOff();
+          BackyardLightService.turnLightsOff();
         }
       }
 
       this.toggleLights = function () {
-        if (LightService.getLightState() === "off") {
-          LightService.turnLightsOn();
-        }
-        else if (LightService.getLightState() === "on") {
-          LightService.turnLightsOff();
-        }
+        BackyardLightService.toggleLights();
       }
 
     }

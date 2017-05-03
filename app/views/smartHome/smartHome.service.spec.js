@@ -3,11 +3,11 @@
 describe('SmartHomeService', function() {
 
   var SmartHomeService;
-  var LightService;
+  var BackyardLightService;
   beforeEach(module('myApp.smartHome'));
 
-  beforeEach(inject(function (_LightService_, _SmartHomeService_) {
-    LightService = _LightService_;
+  beforeEach(inject(function (_BackyardLightService_, _SmartHomeService_) {
+    BackyardLightService = _BackyardLightService_;
     SmartHomeService = _SmartHomeService_;
   }));
 
@@ -36,16 +36,15 @@ describe('SmartHomeService', function() {
   describe('toggleLights()', function() {
     describe('when toggleLights() is called twice', function() {
       it('should switch lights on, then switch lights off', function () {
-        spyOn(LightService, 'turnLightsOn').and.callThrough();
-        spyOn(LightService, 'turnLightsOff').and.callThrough();
+        spyOn(BackyardLightService, 'turnLightsOn').and.callThrough();
+        spyOn(BackyardLightService, 'turnLightsOff').and.callThrough();
         SmartHomeService.toggleLights();
-        expect(LightService.turnLightsOn).toHaveBeenCalled();
+        expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
         SmartHomeService.toggleLights();
-        expect(LightService.turnLightsOff).toHaveBeenCalled();
+        expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
       })
     });
-
-
   });
+
 
 });

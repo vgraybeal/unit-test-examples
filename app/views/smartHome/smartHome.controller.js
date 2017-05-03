@@ -6,7 +6,8 @@ angular.module('myApp.smartHome')
 .controller('SmartHomeCtrl', ['SmartHomeService', '$rootScope',
   function(SmartHomeService, $rootScope) {
     var vm = this;
-    vm.lightsState = "off";
+    vm.backyardLightState = "off";
+    vm.frontyardLightState = "off";
     vm.timeOfDay = "";
 
     vm.displayTimeOfDay = function () {
@@ -21,9 +22,12 @@ angular.module('myApp.smartHome')
       SmartHomeService.toggleLights();
     }
 
-    $rootScope.$on('switchLights', function (event, newLightState) {
-      vm.lightsState = newLightState;
+    $rootScope.$on('switchBackyardLights', function (event, newLightState) {
+      vm.backyardLightState = newLightState;
     })
 
+    $rootScope.$on('switchFrontyardLights', function (event, newLightState) {
+      vm.frontyardLightState = newLightState;
+    })
   }
 ]);

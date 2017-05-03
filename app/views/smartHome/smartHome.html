@@ -5,4 +5,9 @@
 <button ng-click="vm.toggleLights()">Toggle Lights</button>
 <p>Lights {{vm.lightsState}}</p>
 
-<i class="fa fa-lightbulb-o" ng-class="{on: vm.lightsState === 'on'}" aria-hidden="true"></i>
+<h2>Backyard</h2>
+<i class="fa fa-lightbulb-o" ng-class="{on: vm.backyardLightState === 'on'}" aria-hidden="true"></i>
+
+
+<h2>Front Yard</h2>
+<i class="fa fa-lightbulb-o" ng-class="{on: vm.frontyardLightState === 'on'}" aria-hidden="true"></i>

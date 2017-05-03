@@ -35,27 +35,27 @@ describe('SmartHomeCtrl', function(){
     });
 
     // TESTING DEPENDENCIES
-    describe('when light state changes', function() {
+    describe('when backyard light state changes', function() {
 
-        var LightService;
+        var BackyardLightService;
 
-        beforeEach(inject(function (_LightService_) {
-            LightService = _LightService_;
+        beforeEach(inject(function (_BackyardLightService_) {
+            BackyardLightService = _BackyardLightService_;
         }));
 
         describe('if switches on', function() {
             it('should set lightsState to "on"', function () {
-                LightService.turnLightsOn();
+                BackyardLightService.turnLightsOn();
 
-                expect(vm.lightsState).toBe('on');
+                expect(vm.backyardLightState).toBe('on');
             })
         });
 
         describe('if switches off', function() {
             it('should set lightsState to "off"', function () {
-                LightService.turnLightsOff();
+                BackyardLightService.turnLightsOff();
 
-                expect(vm.lightsState).toBe('off');
+                expect(vm.backyardLightState).toBe('off');
             })
         });
     });
