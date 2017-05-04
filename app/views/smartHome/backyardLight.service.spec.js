@@ -42,6 +42,19 @@ describe('BackyardLightService', function () {
                 expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
             });
         });
+
+
+        // NON-INDEPENDENT TESTS
+        describe('when toggleLights() is called twice', function() {
+            it('should call turnLightsOn() then turnLightsOff()', function () {
+                spyOn(BackyardLightService, 'turnLightsOn').and.callThrough();
+                spyOn(BackyardLightService, 'turnLightsOff').and.callThrough();
+                BackyardLightService.toggleLights();
+                expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
+                BackyardLightService.toggleLights();
+                expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
+            })
+        });
     });
 
 });

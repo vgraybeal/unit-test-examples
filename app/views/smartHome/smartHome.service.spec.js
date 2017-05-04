@@ -32,19 +32,5 @@ describe('SmartHomeService', function() {
     });
   });
 
-  // NON-INDEPENDENT TESTS
-  describe('toggleLights()', function() {
-    describe('when toggleLights() is called twice', function() {
-      it('should switch lights on, then switch lights off', function () {
-        spyOn(BackyardLightService, 'turnLightsOn').and.callThrough();
-        spyOn(BackyardLightService, 'turnLightsOff').and.callThrough();
-        SmartHomeService.toggleLights();
-        expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
-        SmartHomeService.toggleLights();
-        expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
-      })
-    });
-  });
-
 
 });
