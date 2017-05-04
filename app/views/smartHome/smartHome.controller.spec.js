@@ -13,21 +13,21 @@ describe('SmartHomeCtrl', function(){
     describe('displayTimeOfDay()', function() {
         describe('at 6 AM', function() {
             it('should set timeOfDay to Morning', function () {
-                vm.displayTimeOfDay()
+                vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Morning');
             })
         });
         describe('at 1 PM', function() {
             it('should set timeOfDay to Afternoon', function () {
-                vm.displayTimeOfDay()
+                vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Afternoon');
             })
         });
         describe('at 10 PM', function() {
             it('should set timeOfDay to Night', function () {
-                vm.displayTimeOfDay()
+                vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Night');
             })
