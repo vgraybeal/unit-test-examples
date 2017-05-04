@@ -11,23 +11,23 @@ describe('SmartHomeService', function() {
     SmartHomeService = _SmartHomeService_;
   }));
 
-  // NON-DETERMINISTIC TESTS
+  // NON-DETERMINISTIC TESTS - SOLUTION: METHOD ARGUMENT
   describe('getTimeOfDay()', function() {
     describe('at 6 AM', function() {
       it('should return Morning', function () {
-        expect(SmartHomeService.getTimeOfDay()).toBe('Morning');
+        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 06:00'))).toBe('Morning');
       })
     });
 
     describe('at 12 PM', function() {
       it('should return Afternoon', function () {
-        expect(SmartHomeService.getTimeOfDay()).toBe('Afternoon');
+        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 12:00'))).toBe('Afternoon');
       })
     });
 
     describe('at 10 PM', function() {
       it('should return Night', function () {
-        expect(SmartHomeService.getTimeOfDay()).toBe('Night');
+        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 22:00'))).toBe('Night');
       })
     });
   });

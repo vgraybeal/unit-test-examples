@@ -11,7 +11,7 @@ angular.module('myApp.smartHome')
     vm.timeOfDay = "";
 
     vm.displayTimeOfDay = function () {
-      vm.timeOfDay = SmartHomeService.getTimeOfDay();
+      vm.timeOfDay = SmartHomeService.getTimeOfDay(new Date());
     }
 
     vm.triggerMotion = function () {
