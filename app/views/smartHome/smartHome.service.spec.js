@@ -4,30 +4,35 @@ describe('SmartHomeService', function() {
 
   var SmartHomeService;
   var BackyardLightService;
+  var DateTimeService;
   beforeEach(module('myApp.smartHome'));
 
-  beforeEach(inject(function (_BackyardLightService_, _SmartHomeService_) {
+  beforeEach(inject(function (_BackyardLightService_, _SmartHomeService_, _DateTimeService_) {
     BackyardLightService = _BackyardLightService_;
     SmartHomeService = _SmartHomeService_;
+    DateTimeService = _DateTimeService_;
   }));
 
-  // NON-DETERMINISTIC TESTS - SOLUTION: METHOD ARGUMENT
+  // NON-DETERMINISTIC TESTS - SOLUTION: DEPENDENCY INJECTION
   describe('getTimeOfDay()', function() {
     describe('at 6 AM', function() {
       it('should return Morning', function () {
-        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 06:00'))).toBe('Morning');
+        spyOn(DateTimeService, "getDateTime").and.returnValue(new Date('2017-01-01 06:00'))
+        expect(SmartHomeService.getTimeOfDay()).toBe('Morning');
       })
     });
 
     describe('at 12 PM', function() {
       it('should return Afternoon', function () {
-        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 12:00'))).toBe('Afternoon');
+        spyOn(DateTimeService, "getDateTime").and.returnValue(new Date('2017-01-01 12:00'))
+        expect(SmartHomeService.getTimeOfDay()).toBe('Afternoon');
       })
     });
 
     describe('at 10 PM', function() {
       it('should return Night', function () {
-        expect(SmartHomeService.getTimeOfDay(new Date('2017-01-01 22:00'))).toBe('Night');
+        spyOn(DateTimeService, "getDateTime").and.returnValue(new Date('2017-01-01 22:00'))
+        expect(SmartHomeService.getTimeOfDay()).toBe('Night');
       })
     });
   });

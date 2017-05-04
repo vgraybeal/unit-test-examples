@@ -2,11 +2,12 @@
 
 angular.module('myApp.smartHome')
 
-  .service('SmartHomeService', ['BackyardLightService',
-    function (BackyardLightService) {
+  .service('SmartHomeService', ['BackyardLightService', 'DateTimeService',
+    function (BackyardLightService, DateTimeService) {
       var lastMotionTime;
 
-      this.getTimeOfDay = function (time) {
+      this.getTimeOfDay = function () {
+        var time = DateTimeService.getDateTime();
         var hour = time.getHours();
 
         if (hour >= 0 && hour < 6 || hour > 18) {
@@ -21,7 +22,7 @@ angular.module('myApp.smartHome')
       }
 
       this.actuateLights = function () {
-        var timeOfDay = this.getTimeOfDay(new Date());
+        var timeOfDay = this.getTimeOfDay(DateTimeService.getDateTime());
 
         // If motion was detected in the evening or at night, turn the light on.
         if (timeOfDay === "Night") {
