@@ -3,16 +3,24 @@
 describe('SmartHomeCtrl', function(){
 
     var vm;
+    var SmartHomeService;
+
     beforeEach(module('myApp.smartHome'));
 
-    beforeEach(inject(function ($controller) {
-        vm = $controller('SmartHomeCtrl', {});
+    beforeEach(inject(function ($controller, _SmartHomeService_) {
+        SmartHomeService = _SmartHomeService_;
+        vm = $controller('SmartHomeCtrl', {
+            SmartHomeService: SmartHomeService
+        });
     }));
 
-    // NON-UNIT TESTS
+    // NON-UNIT TESTS - SOLUTION: MOCK DEPENDENCIES
     describe('displayTimeOfDay()', function() {
+        var $rootScope;
+
         describe('at 6 AM', function() {
             it('should set timeOfDay to Morning', function () {
+                spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Morning');
                 vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Morning');
@@ -20,6 +28,7 @@ describe('SmartHomeCtrl', function(){
         });
         describe('at 1 PM', function() {
             it('should set timeOfDay to Afternoon', function () {
+                spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Afternoon');
                 vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Afternoon');
@@ -27,6 +36,7 @@ describe('SmartHomeCtrl', function(){
         });
         describe('at 10 PM', function() {
             it('should set timeOfDay to Night', function () {
+                spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Night');
                 vm.displayTimeOfDay();
 
                 expect(vm.timeOfDay).toBe('Night');
