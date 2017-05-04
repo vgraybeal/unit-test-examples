@@ -38,7 +38,7 @@ describe('SmartHomeService', function() {
   });
 
 
-  // UNNECESSARY ASSERTION
+  // UNNECESSARY ASSERTION - SOLUTION: REMOVE ASSERTION
   describe('actuateLights()', function() {
     beforeEach(function () {
         spyOn(BackyardLightService, 'turnLightsOff');
@@ -49,7 +49,6 @@ describe('SmartHomeService', function() {
       it('should call turnLightsOff()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Morning');
         SmartHomeService.actuateLights();
-        expect(SmartHomeService.getTimeOfDay).toHaveBeenCalled();
         expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
       })
     });
@@ -58,7 +57,6 @@ describe('SmartHomeService', function() {
       it('should call turnLightsOff()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Afternoon');
         SmartHomeService.actuateLights();
-        expect(SmartHomeService.getTimeOfDay).toHaveBeenCalled();
         expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();      
       })
     });
@@ -67,7 +65,6 @@ describe('SmartHomeService', function() {
       it('should call turnLightsOn()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Night');
         SmartHomeService.actuateLights();
-        expect(SmartHomeService.getTimeOfDay).toHaveBeenCalled();
         expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();       
       })
     });
