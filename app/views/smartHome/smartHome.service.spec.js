@@ -3,12 +3,10 @@
 describe('SmartHomeService', function() {
 
   var SmartHomeService;
-  var BackyardLightService;
   var DateTimeService;
   beforeEach(module('myApp.smartHome'));
 
-  beforeEach(inject(function (_BackyardLightService_, _SmartHomeService_, _DateTimeService_) {
-    BackyardLightService = _BackyardLightService_;
+  beforeEach(inject(function (_SmartHomeService_, _DateTimeService_) {
     SmartHomeService = _SmartHomeService_;
     DateTimeService = _DateTimeService_;
   }));
@@ -40,32 +38,33 @@ describe('SmartHomeService', function() {
 
   // UNNECESSARY ASSERTION - SOLUTION: REMOVE ASSERTION
   describe('actuateLights()', function() {
+    var TestLightService;
+
     beforeEach(function () {
-        spyOn(BackyardLightService, 'turnLightsOff');
-        spyOn(BackyardLightService, 'turnLightsOn');
+        TestLightService = jasmine.createSpyObj('TestLightService', ['turnLightsOn', 'turnLightsOff']);
     });
 
     describe('in the Morning', function() {
       it('should call turnLightsOff()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Morning');
-        SmartHomeService.actuateLights();
-        expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
+        SmartHomeService.actuateLights(TestLightService.turnLightsOn, TestLightService.turnLightsOff);
+        expect(TestLightService.turnLightsOff).toHaveBeenCalled();
       })
     });
 
     describe('in the Afternoon', function() {
       it('should call turnLightsOff()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Afternoon');
-        SmartHomeService.actuateLights();
-        expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();      
+        SmartHomeService.actuateLights(TestLightService.turnLightsOn, TestLightService.turnLightsOff);
+        expect(TestLightService.turnLightsOff).toHaveBeenCalled();
       })
     });
 
     describe('at Night', function() {
       it('should call turnLightsOn()', function () {
         spyOn(SmartHomeService, 'getTimeOfDay').and.returnValue('Night');
-        SmartHomeService.actuateLights();
-        expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();       
+        SmartHomeService.actuateLights(TestLightService.turnLightsOn, TestLightService.turnLightsOff);
+        expect(TestLightService.turnLightsOn).toHaveBeenCalled();
       })
     });
   });
