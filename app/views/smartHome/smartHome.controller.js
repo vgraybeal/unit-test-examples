@@ -3,8 +3,8 @@
 angular.module('myApp.smartHome')
 
 
-.controller('SmartHomeCtrl', ['SmartHomeService', '$rootScope',
-  function(SmartHomeService, $rootScope) {
+.controller('SmartHomeCtrl', ['SmartHomeService', 'BackyardLightService', 'FrontyardLightService', '$rootScope',
+  function(SmartHomeService, BackyardLightService, FrontyardLightService, $rootScope) {
     var vm = this;
     vm.backyardLightState = "off";
     vm.frontyardLightState = "off";
@@ -15,11 +15,22 @@ angular.module('myApp.smartHome')
     }
 
     vm.triggerMotion = function () {
-      SmartHomeService.actuateLights();
+      SmartHomeService.actuateLights(turnLightsOn, turnLightsOff);
+    }
+
+    var turnLightsOn = function () {
+      BackyardLightService.turnLightsOn();
+      FrontyardLightService.turnLightsOn();
+    }
+
+    var turnLightsOff = function () {
+      BackyardLightService.turnLightsOff();
+      FrontyardLightService.turnLightsOff();
     }
 
     vm.toggleLights = function () {
-      SmartHomeService.toggleLights();
+      BackyardLightService.toggleLights();
+      FrontyardLightService.toggleLights();
     }
 
     $rootScope.$on('switchBackyardLights', function (event, newLightState) {
