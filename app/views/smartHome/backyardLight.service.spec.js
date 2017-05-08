@@ -24,24 +24,10 @@ describe('BackyardLightService', function () {
         });
     });
 
-    // MISSING INVALID CASE
+
     describe('toggleLights()', function () {
-        describe('when lights are off', function () {
-            it('should call turnLightsOn()', function () {
-                spyOn(BackyardLightService, 'turnLightsOn');
-                spyOn(BackyardLightService, 'getLightState').and.returnValue('off');
-                BackyardLightService.toggleLights();
-                expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
-            });
-        });
-        describe('when lights are on', function () {
-            it('should call turnLightsOff()', function () {
-                spyOn(BackyardLightService, 'turnLightsOff');
-                spyOn(BackyardLightService, 'getLightState').and.returnValue('on');
-                BackyardLightService.toggleLights();
-                expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
-            });
-        });
+
+        // MISSING INVALID CASE
 
 
         // NON-INDEPENDENT TESTS
