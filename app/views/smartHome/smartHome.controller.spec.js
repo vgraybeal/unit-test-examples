@@ -16,7 +16,6 @@ describe('SmartHomeCtrl', function(){
 
     // NON-UNIT TESTS - SOLUTION: MOCK DEPENDENCIES
     describe('displayTimeOfDay()', function() {
-        var $rootScope;
 
         describe('at 6 AM', function() {
             it('should set timeOfDay to Morning', function () {
@@ -44,18 +43,18 @@ describe('SmartHomeCtrl', function(){
         });
     });
 
-    // TESTING DEPENDENCIES
+    // TESTING DEPENDENCIES - SOLUTION: TEST ACTUAL BEHAVIOR OF UNIT
     describe('when backyard light state changes', function() {
 
-        var BackyardLightService;
+        var $rootScope;
 
-        beforeEach(inject(function (_BackyardLightService_) {
-            BackyardLightService = _BackyardLightService_;
+        beforeEach(inject(function (_$rootScope_) {
+            $rootScope = _$rootScope_;
         }));
 
         describe('if switches on', function() {
             it('should set lightsState to "on"', function () {
-                BackyardLightService.turnLightsOn();
+                $rootScope.$broadcast('switchBackyardLights', 'on');
 
                 expect(vm.backyardLightState).toBe('on');
             })
@@ -63,7 +62,7 @@ describe('SmartHomeCtrl', function(){
 
         describe('if switches off', function() {
             it('should set lightsState to "off"', function () {
-                BackyardLightService.turnLightsOff();
+                $rootScope.$broadcast('switchBackyardLights', 'off');
 
                 expect(vm.backyardLightState).toBe('off');
             })
