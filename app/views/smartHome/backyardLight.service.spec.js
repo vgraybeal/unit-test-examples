@@ -30,15 +30,28 @@ describe('BackyardLightService', function () {
         // MISSING INVALID CASE
 
 
-        // NON-INDEPENDENT TESTS
-        describe('when toggleLights() is called twice', function() {
-            it('should call turnLightsOn() then turnLightsOff()', function () {
-                spyOn(BackyardLightService, 'turnLightsOn').and.callThrough();
-                spyOn(BackyardLightService, 'turnLightsOff').and.callThrough();
-                BackyardLightService.toggleLights();
-                expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
+        // NON-INDEPENDENT TESTS - SOLUTION: SPLIT TESTS UP AND MOCK STATES
+        describe('when lights are on', function() {
+            beforeEach(function () {
+                spyOn(BackyardLightService, 'getLightState').and.returnValue('on');
+                spyOn(BackyardLightService, 'turnLightsOff');
+            });
+
+            it('should call turnLightsOff()', function () {
                 BackyardLightService.toggleLights();
                 expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
+            })
+        });
+
+        describe('when lights are off', function() {
+            beforeEach(function () {
+                spyOn(BackyardLightService, 'getLightState').and.returnValue('off');
+                spyOn(BackyardLightService, 'turnLightsOn');
+            });
+
+            it('should call turnLightsOn()', function () {
+                BackyardLightService.toggleLights();
+                expect(BackyardLightService.turnLightsOn).toHaveBeenCalled();
             })
         });
     });
