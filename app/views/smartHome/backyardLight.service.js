@@ -25,7 +25,7 @@ angular.module('myApp.smartHome')
       if (this.getLightState() === "off") {
         this.turnLightsOn();
       }
-      else if (this.getLightState() === "on") {
+      else {
         this.turnLightsOff();
       }
     }

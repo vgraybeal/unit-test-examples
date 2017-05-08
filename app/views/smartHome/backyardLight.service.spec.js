@@ -27,7 +27,18 @@ describe('BackyardLightService', function () {
 
     describe('toggleLights()', function () {
 
-        // MISSING INVALID CASE
+        // MISSING INVALID CASE - SOLUTION: MOCK INVALID CASE
+        describe('when lights are in an invalid state', function() {
+            beforeEach(function () {
+                spyOn(BackyardLightService, 'getLightState').and.returnValue('invalid');
+                spyOn(BackyardLightService, 'turnLightsOff');
+            });
+
+            it('should call turnLightsOff()', function () {
+                BackyardLightService.toggleLights();
+                expect(BackyardLightService.turnLightsOff).toHaveBeenCalled();
+            })
+        });
 
 
         // NON-INDEPENDENT TESTS - SOLUTION: SPLIT TESTS UP AND MOCK STATES
